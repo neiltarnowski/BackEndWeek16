@@ -50,14 +50,13 @@ class FetchJeepTest {
 		String uri = String.format("http://localhost:%d/jeeps?model=%s&trim=%s", serverPort, model, trim);
 
 		ResponseEntity<List<Jeep>> response = restTemplate.exchange(uri, HttpMethod.GET, null,
-				new ParameterizedTypeReference<>() {
-				});
+				new ParameterizedTypeReference<>() {});
+				
 
 		assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
 
 		List<Jeep> expected = buildExpected();
-		System.out.println(expected);
-		assertThat(response.getBody()).isEqualTo(HttpStatus.OK);
+		assertThat(response.getBody()).isEqualTo(expected);
 	}
 
 	private List<Jeep> buildExpected() {
